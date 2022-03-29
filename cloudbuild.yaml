@@ -6,5 +6,5 @@ steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args: ['gcloud', 'config', 'list']
 options:   
-    workerPool: 'projects/$PROJECT_ID/locations/us-central1/workerPools/us-central1-pool'
-serviceAccount: "projects/${PROJECT_ID}/serviceAccounts/shared-service-account@gdw-dev-training.iam.gserviceaccount.com"
+    workerPool: 'projects/gdw-dev-training/locations/us-central1/workerPools/us-central1-pool'
+serviceAccount: "projects/gdw-dev-training/serviceAccounts/shared-service-account@gdw-dev-training.iam.gserviceaccount.com"
