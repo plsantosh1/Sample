@@ -1,0 +1,10 @@
+steps:
+#step 0 - cat cloudbuild.yaml
+- name: 'bash'
+  args: ['cat', 'cloudbuild.yaml']
+#step 1 - list gcloud config
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args: ['gcloud', 'config', 'list']
+options:   
+    workerPool: 'projects/$PROJECT_ID/locations/us-central1/workerPools/us-central1-pool'
+serviceAccount: "projects/${PROJECT_ID}/serviceAccounts/shared-service-account@gdw-dev-training.iam.gserviceaccount.com"
