@@ -2,7 +2,7 @@ steps:
 - name: 'python:3.7-slim'
   id: App Test
   entrypoint: /bin/sh
-  args: ['-c', 'pip install flask && python app/test_app.py -v' ]
+  args: ['-c', 'pip install flask && python test_app.py -v' ]
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Container Build
@@ -18,12 +18,12 @@ steps:
   args:
   - '-c'
   - |
-     sed "s/GCP_PROJECT_ID/${PROJECT_ID}/g" deploy/kube-app.yaml.tpl | \
-     sed "s/VERSION/${SHORT_SHA}/g" > deploy/kube-app.yaml
+     sed "s/GCP_PROJECT_ID/${PROJECT_ID}/g" kube-app.yaml.tpl | \
+     sed "s/VERSION/${SHORT_SHA}/g" > kube-app.yaml
 
 - name: 'gcr.io/cloud-builders/kubectl'
   id: Kubernetes Deployment
-  args: [ 'apply', '-f', 'deploy/kube-app.yaml' ]
+  args: [ 'apply', '-f', 'kube-app.yaml' ]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=europe-west2-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=pipeline-demo'
